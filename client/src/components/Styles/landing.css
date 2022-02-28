@@ -1,0 +1,26 @@
+.bodyLanding {
+    background-image: url("https://image.winudf.com/v2/image/Y29tLmFwcHlidWlsZGVyLmxvZ3JhbWFzb25saW5lLkZvbmRvc19Db2xvcmVzX1NvbGlkb3Nfc2NyZWVuXzRfMTUzNjUzNzU0N18wMTg/screen-4.jpg?fakeurl=1&type=.jpg");
+    background-position: center;
+    background-size: cover;
+    height: 100vh;
+}
+
+.buttonLanding {
+    cursor: pointer;
+    font-weight: 700;
+    transition: all .2s;
+    padding: 10px 20px;
+    border-radius: 100px;
+    background: #cfef00;
+    border: 1px solid transparent;
+    display: flex;
+    align-items: center;
+    font-size: 15px;
+}
+
+.divButton {
+    text-align:center;
+    position: absolute;
+    top: 45%;
+    left: 48%;
+}
