@@ -7,6 +7,8 @@ import {
 } from "../../actions";
 import Paginado from "../Paginado/Paginado";
 import Card from "../Card/Card";
+import NavBar from "../NavBar/NavBar";
+import styles from './home.css'
 
 export default function Home() {
     const dispatch = useDispatch()
@@ -31,7 +33,10 @@ export default function Home() {
     window.scrollTo(0, 0);
     
     return(
-        <div>
+        <div className="bodyHome">
+            <div className="bodyNavBar">
+              <NavBar/>
+            </div>
             <div>
                 {
                   currentCountries?.map((el) => {
