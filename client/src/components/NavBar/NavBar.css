@@ -1,0 +1,11 @@
+.select {
+    flex: 90%;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    margin-left: 700px;
+}
+
+.div {
+    margin-left: 70px;
+}

@@ -8,8 +8,8 @@ const apiInfo = async () => {
         return {
             id: el.cca3,
             name: el.name.common,
-            image: el.flags[0],
-            continents: el.continents,
+            image: el.flags[1],
+            continent: el.continents[0],
             capital: el.capital,
             subRegion: el.subregion,
             area: el.area,
