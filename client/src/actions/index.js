@@ -10,12 +10,50 @@ export function getCountries() {
     }
 }
 
+export function getActivities (){
+    return async function(dispatch){
+        try{
+        const response = await axios.get("http://localhost:3001/activities")
+        dispatch({
+            type: "GET_ACTIVITIES",
+            payload: response.data
+        })
+        }catch(error){
+            console.log(error)
+        }
+    }
+}
+
 export function getNameCountries(name) {
     return async function(dispatch) {
         var json  = await axios.get("http://localhost:3001/countries?name=" + name)
         return dispatch({
             type: "GET_NAME_COUNTRIES",
             payload: json.data
+        })
+    }
+}
+
+export function getDetailCountry(id){
+    return async function (dispach){
+        try{
+            let res = await axios.get(`http://localhost:3001/countries/${id}`);
+            return dispach({
+                type: "GET_COUNTRY_DETAIL",
+                payload: res.data
+            })
+        }catch(err){
+            console.log(err)
+        }
+    }
+}
+
+export function postActivity (payload) { //me trae todo lo que llena el user
+    return async function (dispach){
+        let res = await axios.post('http://localhost:3001/activities', payload);
+        return dispach({
+            type: "POST_ACTIVITY",
+            payload: res
         })
     }
 }
@@ -49,41 +87,3 @@ export function filterByActivity(payload){
     }
 }
 
-export function getActivities (){
-    return async function(dispatch){
-        try{
-        const response = await axios.get("http://localhost:3001/activities")
-        dispatch({
-            type: "GET_ACTIVITIES",
-            payload: response.data
-        })
-        }catch(error){
-            console.log(error)
-        }
-    }
-}
-
-export  function postActivity (payload) { //me trae todo lo que llena el user
-    return async function (dispach){
-        let res = await axios.post('http://localhost:3001/activities', payload);
-        return dispach({
-            type: "POST_ACTIVITY",
-            payload: res
-        })
-    }
-}
-
-
-export function getDetailCountry(id){
-    return async function (dispach){
-        try{
-            let res = await axios.get(`http://localhost:3001/countries/${id}`);
-            return dispach({
-                type: "GET_COUNTRY_DETAIL",
-                payload: res.data
-            })
-        }catch(err){
-            console.log(err)
-        }
-    }
-}

@@ -70,8 +70,8 @@ export default function NavBar() {
         <label> Population: </label>
         <select onChange={(e) => handleOrderPopulation(e)}>
           <option value="None">None</option>
-          <option value='Highest'> Highest </option>
-          <option value='Lowest'> Lowest </option>
+          <option value='more'> Highest </option>
+          <option value='less'> Lowest </option>
         </select>
       </div>
       <div className="div">

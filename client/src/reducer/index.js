@@ -13,50 +13,34 @@ export default function rootReducer(state = initialState, action) {
         countries: action.payload,
         allCountries: action.payload,
       };
-    case "GET_ACTIVITIES":
-      return {
-        ...state,
-        activities: action.payload,
-      };
-    case "GET_NAME_COUNTRIES":
-      return {
-        ...state,
-        countries: action.payload,
-      };
-    case "ORDER_BY_NAME":
-        let order =
-        action.payload === "asc"
+      case "GET_ACTIVITIES":
+        return {
+          ...state,
+          activities: action.payload,
+        };
+        case "GET_NAME_COUNTRIES":
+          return {
+            ...state,
+            countries: action.payload,
+          };
+          case "POST_ACTIVITY": {
+            return {
+              ...state,
+            };
+          }
+          case "GET_COUNTRY_DETAIL":
+            return {
+              ...state,
+              detail: action.payload,
+            };
+          case "ORDER_BY_NAME":
+        let order = action.payload === "asc"
           ? state.countries.sort((a, b) => (a.name > b.name ? 1 : -1))
           : state.countries.sort((a, b) => (a.name < b.name ? 1 : -1));
       return {
         ...state,
         countries: order,
       }
-    //   const orderByName =
-    //     action.payload === "asc"
-    //       ? state.countries.sort(function (a, b) {
-    //           //accede a mi estado countries y hacele un sort
-    //           if (a.name > b.name) {
-    //             return 1; // los invierte
-    //           }
-    //           if (b.name > a.name) {
-    //             return -1; // no invierte
-    //           }
-    //           return 0;
-    //         })
-    //       : state.countries.sort(function (a, b) {
-    //           if (a.name > b.name) {
-    //             return -1; // no intercambia
-    //           }
-    //           if (b.name > a.name) {
-    //             return 1; //lo intercambia
-    //           }
-    //           return 0; // no intercamb. ===
-    //         });
-    //   return {
-    //     ...state,
-    //     countries: orderByName,
-    //   };
     case "FILTER_CONTINENT":
       const allCountries = state.allCountries;
       const continentFilter =
@@ -69,7 +53,7 @@ export default function rootReducer(state = initialState, action) {
       };
     case "ORDER_BY_POPULATION":
       const orderByPopulation =
-        action.payload === "Lowest"
+        action.payload === "less"
           ? state.allCountries.sort(function (a, b) {
               if (a.population > b.population) {
                 return 1;
@@ -92,13 +76,8 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         allCountries: orderByPopulation,
       };
-    case "POST_ACTIVITY": {
-      return {
-        ...state, // solo me devuelve el estado como esta.
-      };
-    }
     case "FILTER_ACTIVITY":
-      const countriesAll = state.allCountries;
+      const countriesAll = state.countries;
       let stateActivity = [];
       for (let country of countriesAll) {
         if (country.activities.length !== 0) {
@@ -112,13 +91,7 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
         countries: stateActivity,
-      };
-
-    case "GET_COUNTRY_DETAIL":
-      return {
-        ...state,
-        countryDetail: action.payload,
-      };
+      }
     default:
       return state;
   }
