@@ -1,5 +1,8 @@
 .bodyHome {
-    background-image: url("https://image.winudf.com/v2/image/Y29tLmFwcHlidWlsZGVyLmxvZ3JhbWFzb25saW5lLkZvbmRvc19Db2xvcmVzX1NvbGlkb3Nfc2NyZWVuXzRfMTUzNjUzNzU0N18wMTg/screen-4.jpg?fakeurl=1&type=.jpg");
+    background-image: url("https://i.pinimg.com/originals/1f/4c/26/1f4c26c0f8feec30615f77f787c08612.jpg");
+    background-position: center;
+    background-size: cover;
+    height: 100vh;
 }
 
 .bodyNavBar {

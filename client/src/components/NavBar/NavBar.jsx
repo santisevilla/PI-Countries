@@ -46,9 +46,11 @@ export default function NavBar() {
   return (
     <div className="select">
       <div>
-        <button>
-          Create a new activity!
-        </button>
+        <Link to="/activities">
+          <button>
+            Create a new activity!
+          </button>
+        </Link>
       </div>
       <div className="div">
         <button onClick={ e => {handleClick(e)}}>

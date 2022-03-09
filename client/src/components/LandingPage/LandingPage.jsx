@@ -5,9 +5,12 @@ import '../Styles/landing.css'
 export default function LandingPage() {
     return(
         <div className='bodyLanding'>
+            <div className='h1'>
+                <h1>BIENVENIDOS A MI PÁGINA</h1>
+            </div>
             <div className='divButton'>
                 <Link to='/home'>
-                    <button className='buttonLanding'>Ingresar</button>
+                    <button className='button'>Ingresar</button>
                 </Link>
             </div>
         </div>

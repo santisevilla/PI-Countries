@@ -35,10 +35,10 @@ export function getNameCountries(name) {
 }
 
 export function getDetailCountry(id){
-    return async function (dispach){
+    return async function (dispatch){
         try{
             let res = await axios.get(`http://localhost:3001/countries/${id}`);
-            return dispach({
+            return dispatch({
                 type: "GET_COUNTRY_DETAIL",
                 payload: res.data
             })
@@ -49,9 +49,9 @@ export function getDetailCountry(id){
 }
 
 export function postActivity (payload) { //me trae todo lo que llena el user
-    return async function (dispach){
+    return async function (dispatch){
         let res = await axios.post('http://localhost:3001/activities', payload);
-        return dispach({
+        return dispatch({
             type: "POST_ACTIVITY",
             payload: res
         })

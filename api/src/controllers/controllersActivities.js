@@ -15,12 +15,12 @@ const postActivity = async (req, res) => {
             duration,
             season
         })
-        country.forEach(async (c) => {
-            const countrySearch = await Country.findOne({
-                where: {
-                  name: c,
-                },
-              });
+    country?.forEach(async (c) => {
+        const countrySearch = await Country.findOne({
+            where: {
+            name: c,
+            },
+        });
               await activityCreated.addCountry(countrySearch);
             });
             res.status(200).json("Activity create successfully");

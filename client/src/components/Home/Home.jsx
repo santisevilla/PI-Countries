@@ -15,7 +15,7 @@ export default function Home() {
   const [order, setOrder] = useState("");
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [countriesPerPage, setCountriesPerPage] = useState(10);
+  const [countriesPerPage] = useState(9);
   const indexOfLastCountrie = currentPage * countriesPerPage;
   const indexOfFirstCountrie = indexOfLastCountrie - countriesPerPage;
   const currentCountries = allCountries.slice(
@@ -46,8 +46,8 @@ export default function Home() {
                 <Card
                   image={el.image}
                   name={el.name}
-                  continent={el.continents}
-                />
+                  continent={el.continent}
+                /> 
               </Link>
             </div>
           );
