@@ -5,7 +5,7 @@ module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define('country', {
     id: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(3),
       allowNull: false,
       primaryKey: true,
     },
@@ -14,7 +14,7 @@ module.exports = (sequelize) => {
       allowNull: false
     },
     image: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       allowNull: false 
     },
     continent: {
@@ -24,22 +24,15 @@ module.exports = (sequelize) => {
     capital: {
       type: DataTypes.STRING,
       allowNull: false,
-      defaultValue: "no existe"
     },
     subRegion: {
       type: DataTypes.STRING,
-      defaultValue: "no existe"
     },
     area: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.FLOAT,
     },
     population: {
       type: DataTypes.INTEGER,
     },
-    // createdInDb: {
-    //   type: DataTypes.BOOLEAN,
-    //   allowNull: false,
-    //   defaultValue: true
-    // }
   });
 };

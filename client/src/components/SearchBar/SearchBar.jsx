@@ -5,28 +5,30 @@ import { getNameCountries } from "../../actions";
 
 export default function SearchBar() {
   const dispatch = useDispatch();
-  const [name, setName] = useState("");
+  const [name, setName] = useState('');
+  
 
-  function handleInputChange(e) {
-    e.preventDefault();
-    setName(e.target.value);
+  function handleInputCountries(e) {
+      e.preventDefault();
+      //dispatch(getNameCountries(name));
+      setName('')
+      setName(e.target.value);        
   }
 
-  function handleSubmit(e) {
-    e.preventDefault();
-    dispatch(getNameCountries(name));
-    setName("");
-  }
-
-  return (
-    <div>
-      <input
-        type="text"
-        placeholder="Search a countrie"
-        onChange={(e) => handleInputChange(e)}
-        onInput={(e) => handleSubmit(e)}
-      />
-      <button>Search</button>
-    </div>
-  );
+  function handleSubmitCountries(e) {
+      e.preventDefault();
+      if (name.length > 0) {
+          dispatch(getNameCountries(name));
+          setName('');
+      }else{
+          alert('Enter a country please!!')
+      }                
+  }  
+  
+  return(
+      <div>
+          <input type="text" placeholder={'Enter the Country...'} value = {name} onChange= {e => handleInputCountries(e)}/> 
+          <button type="submit" onClick= {e => handleSubmitCountries(e)}>Search</button>
+      </div>
+  )
 }

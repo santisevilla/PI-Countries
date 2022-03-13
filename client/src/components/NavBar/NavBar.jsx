@@ -2,61 +2,73 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { 
-    filterByContinent, 
-    getCountries, 
-    orderByName, 
-    orderByPopulation 
+import {
+  filterByContinent,
+  getCountries,
+  orderByName,
+  orderByPopulation,
+  filterByActivity,
+  getActivities
 } from "../../actions/index";
 import SearchBar from "../SearchBar/SearchBar";
-import styles from "./NavBar.css"
+import styles from "./NavBar.css";
 
 export default function NavBar() {
   const dispatch = useDispatch();
-  const allCountries = useSelector((state) => state.dogs);
+  const allCountries = useSelector((state) => state.countries);
+  const allActivities = useSelector((state) => state.activities);
   const [currentPage, setCurrentPage] = useState(1);
   const [order, setOrder] = useState("");
 
   useEffect(() => {
-    dispatch(getCountries());
+    dispatch(getActivities())
   }, [dispatch]);
 
   function handleClick(e) {
-    e.preventDefault()
-    dispatch(getCountries())
+    e.preventDefault();
+    dispatch(getCountries());
   }
 
   function handleAlphabeticalOrder(e) {
     e.preventDefault();
-    dispatch(orderByName(e.target.value))
-    setCurrentPage(1)
-    setOrder(`Ordenado ${e.target.value}`)
+    dispatch(orderByName(e.target.value));
+    setCurrentPage(1);
+    setOrder(e.target.value);
   }
 
   function handleFilterContinent(e) {
     e.preventDefault();
-    dispatch(filterByContinent(e.target.value))
+    dispatch(filterByContinent(e.target.value));
   }
 
   function handleOrderPopulation(e) {
-    e.preventDefault()
-    dispatch(orderByPopulation(e.target.value))
+    e.preventDefault();
+    dispatch(orderByPopulation(e.target.value));
+    setCurrentPage(1);
+    setOrder(e.target.value);
+  }
+
+  function handleFilterActivity(e) {
+    e.preventDefault();
+    dispatch(filterByActivity(e.target.value));
   }
 
   return (
     <div className="select">
       <div>
         <Link to="/activities">
-          <button>
-            Create a new activity!
-          </button>
+          <button>Create a new activity!</button>
         </Link>
       </div>
       <div className="div">
-        <button onClick={ e => {handleClick(e)}}>
-            Reset 
-        </button>    
-      </div>  
+        <button
+          onClick={(e) => {
+            handleClick(e);
+          }}
+        >
+          All Countries
+        </button>
+      </div>
       <div className="div">
         <SearchBar />
       </div>
@@ -72,18 +84,18 @@ export default function NavBar() {
         <label> Population: </label>
         <select onChange={(e) => handleOrderPopulation(e)}>
           <option value="None">None</option>
-          <option value='more'> Highest </option>
-          <option value='less'> Lowest </option>
+          <option value="more"> Highest </option>
+          <option value="less"> Lowest </option>
         </select>
       </div>
       <div className="div">
         <label> Continents: </label>
         <select onChange={(e) => handleFilterContinent(e)}>
-          <option value='All'>All</option>
-          <option value='Africa'>Africa</option>
+          <option value="All">All</option>
+          <option value="Africa">Africa</option>
           <option value="Antarctica">Antarctica</option>
           <option value="Asia">Asia</option>
-          <option value='Europe'>Europa</option>
+          <option value="Europe">Europa</option>
           <option value="North America">North America</option>
           <option value="Oceania">Oceania</option>
           <option value="South America">South America</option>
@@ -91,8 +103,13 @@ export default function NavBar() {
       </div>
       <div className="div">
         <label> Activity: </label>
-        <select>
-          <option value="None">None</option>
+        <select onChange={(e) => handleFilterActivity(e)}>
+          <option value="All">All activities</option>
+          {allActivities.map((element) => (
+            <option value={element.name} key={element}>
+              {element.name}
+            </option>
+          ))}
         </select>
       </div>
     </div>

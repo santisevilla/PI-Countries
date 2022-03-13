@@ -13,7 +13,7 @@ export function getCountries() {
 export function getActivities (){
     return async function(dispatch){
         try{
-        const response = await axios.get("http://localhost:3001/activities")
+        const response = await axios.get("http://localhost:3001/activities/get")
         dispatch({
             type: "GET_ACTIVITIES",
             payload: response.data
@@ -35,20 +35,20 @@ export function getNameCountries(name) {
 }
 
 export function getDetailCountry(id){
-    return async function (dispatch){
-        try{
-            let res = await axios.get(`http://localhost:3001/countries/${id}`);
+    return async function(dispatch){
+        try {
+            const countryIdJson = await axios.get(`http://localhost:3001/countries/${id}`);
             return dispatch({
-                type: "GET_COUNTRY_DETAIL",
-                payload: res.data
+                type: 'GET_COUNTRY_DETAIL',
+                payload: countryIdJson.data
             })
-        }catch(err){
-            console.log(err)
+        } catch (error) {
+            return(error)
+        }        
         }
-    }
 }
 
-export function postActivity (payload) { //me trae todo lo que llena el user
+export function postActivity (payload) {
     return async function (dispatch){
         let res = await axios.post('http://localhost:3001/activities', payload);
         return dispatch({

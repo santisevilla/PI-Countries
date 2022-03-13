@@ -7,7 +7,7 @@ const postActivity = async (req, res) => {
         difficulty,
         duration,
         season,
-        country
+        countries
     } = req.body
     const activityCreated = await Activity.create({
             name,
@@ -15,7 +15,7 @@ const postActivity = async (req, res) => {
             duration,
             season
         })
-    country?.forEach(async (c) => {
+    countries?.forEach(async (c) => {
         const countrySearch = await Country.findOne({
             where: {
             name: c,
@@ -27,8 +27,15 @@ const postActivity = async (req, res) => {
 } 
 
 const getActivities = async(req, res) => {
-    const activities = await Activity.findAll()
-    return res.status(200).send(activities)
+    try {
+        const dbActInfo = await Activity.findAll({
+            attributes: ['name'],
+            include: Country                      
+        })
+        res.send(dbActInfo);               
+    } catch (error) {
+        res.send(error);
+    }
 }
 
 module.exports = {

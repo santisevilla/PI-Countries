@@ -73,17 +73,16 @@ const showAllCountries = async (req, res, next) => {
     // }
 
 const countriesId = async (req, res) => {
-    const id = req.params.id
-    const totalCountries = await getApiInfo()
-
-    if(id) {
-        const countrieId = totalCountries.find(p => p.id.toLocaleLowerCase() === id.toLocaleLowerCase())
-        if (countrieId) {
-            res.status(200).json(countrieId)
-        } else {
-            res.status(404).json("No existe país con ese id")
-        }
-    } 
+    try {
+        const { id } = req.params;
+        let countryId = await Country.findByPk(id.toUpperCase(),{            
+            attributes: ['image', 'name', 'continent', 'id', 'capital', 'subRegion', 'area', 'population'],
+            include: Activity
+        })
+        countryId ? res.send(countryId): res.send('The entered country does not exist.');
+    } catch (error) {
+        res.send(error);
+    }
 }
 
 module.exports = {
