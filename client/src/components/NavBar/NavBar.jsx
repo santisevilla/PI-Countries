@@ -15,7 +15,6 @@ import styles from "./NavBar.css";
 
 export default function NavBar() {
   const dispatch = useDispatch();
-  const allCountries = useSelector((state) => state.countries);
   const allActivities = useSelector((state) => state.activities);
   const [currentPage, setCurrentPage] = useState(1);
   const [order, setOrder] = useState("");
@@ -35,17 +34,17 @@ export default function NavBar() {
     setCurrentPage(1);
     setOrder(e.target.value);
   }
-
-  function handleFilterContinent(e) {
-    e.preventDefault();
-    dispatch(filterByContinent(e.target.value));
-  }
-
+  
   function handleOrderPopulation(e) {
     e.preventDefault();
     dispatch(orderByPopulation(e.target.value));
     setCurrentPage(1);
     setOrder(e.target.value);
+  }
+
+  function handleFilterContinent(e) {
+    e.preventDefault();
+    dispatch(filterByContinent(e.target.value));
   }
 
   function handleFilterActivity(e) {
@@ -55,17 +54,13 @@ export default function NavBar() {
 
   return (
     <div className="select">
-      <div>
-        <Link to="/activities">
-          <button>Create a new activity!</button>
+      <div className="buttonCreate">
+        <Link to="/activities" style={{ textDecoration: "none", color: "none" }}>
+          Create a new activity!
         </Link>
       </div>
       <div className="div">
-        <button
-          onClick={(e) => {
-            handleClick(e);
-          }}
-        >
+        <button onClick={(e) => {handleClick(e)}}>
           All Countries
         </button>
       </div>
@@ -75,17 +70,17 @@ export default function NavBar() {
       <div className="div">
         <label> Order: </label>
         <select onChange={(e) => handleAlphabeticalOrder(e)}>
-          <option value="None">None</option>
+          <option value="None">All</option>
           <option value="asc">A-Z</option>
-          <option value="des">Z-A</option>
+          <option value="desc">Z-A</option>
         </select>
       </div>
       <div className="div">
         <label> Population: </label>
         <select onChange={(e) => handleOrderPopulation(e)}>
-          <option value="None">None</option>
-          <option value="more"> Highest </option>
-          <option value="less"> Lowest </option>
+          <option value="None">All</option>
+          <option value="asc"> Highest </option>
+          <option value="desc"> Lowest </option>
         </select>
       </div>
       <div className="div">

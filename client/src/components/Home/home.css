@@ -6,11 +6,12 @@
 }
 
 .bodyNavBar {
-    background-color: #4cc9f0;
+    background-color: #606161;
     width: 100%;
     height: 80px;
     display: flex;
     position: static;
+    border: 1px solid rebeccapurple;
 }
 
 /* .cards {

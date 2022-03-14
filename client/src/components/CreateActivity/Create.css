@@ -1,0 +1,30 @@
+.bodyCreate {
+    background-image: url("https://www.10wallpaper.com/wallpaper/1920x1080/1303/ship_map_world_souvenir-quality_Desktop_HD_wallpaper_1920x1080.jpg");
+    background-position: center;
+    background-size: cover;
+    height: 100vh;
+}
+
+.h1Create {
+    text-align:center;
+    position: absolute;
+    top: 1%;
+    left: 43%;
+    color: aliceblue;
+}
+
+.cardCreate {
+    width: 500px;
+    height: 2;
+    border-radius: 20px;
+    padding: 5px;
+    box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
+    background-image: linear-gradient(144deg,#ffb340, #f3c142 50%,#ebd000);
+    border: 1px solid black;
+    text-align:center;
+    position: absolute;
+    top: 22%;
+    left: 40%;
+}
+
+

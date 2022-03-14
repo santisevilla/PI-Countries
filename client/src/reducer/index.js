@@ -34,14 +34,29 @@ export default function rootReducer(state = initialState, action) {
         detail: action.payload,
       };
     case "ORDER_BY_NAME":
-      let order =
-        action.payload === "asc"
-          ? state.countries.sort((a, b) => (a.name > b.name ? 1 : -1))
-          : state.countries.sort((a, b) => (a.name < b.name ? 1 : -1));
-      return {
-        ...state,
-        countries: order,
-      };
+      let arr = action.payload === "Desc" ?
+      state.countries.sort((a, b) => {
+          if (a.name.toLowerCase() > b.name.toLowerCase()) {
+              return -1 // los cambia
+          } else if (b.name.toLowerCase() > a.name.toLowerCase()) {
+              return 1 //los cambia
+          } else {
+              return 0 //los deja igual
+          }
+      }) :
+      state.countries.sort((a, b) => {
+          if (a.name.toLowerCase() < b.name.toLowerCase()) {
+              return -1 // los cambia
+          } else if (b.name.toLowerCase() < a.name.toLowerCase()) {
+              return 1 //los cambia
+          } else {
+              return 0 //los deja igual
+          }
+      })
+  return {
+      ...state,
+      countries: arr
+  }
     case "FILTER_CONTINENT":
       const allCountries = state.allCountries;
       const continentFilter =

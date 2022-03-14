@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { postActivity, getCountries } from "../../actions";
 import { useDispatch, useSelector } from "react-redux";
+import styles from './Create.css'
 
 export function validate(activity) {
   let errors = {};
@@ -27,7 +28,6 @@ export default function CreateActivity() {
   const dispatch = useDispatch();
   const countries = useSelector((state) => state.allCountries);
   const [activity, setActivity] = useState({
-    //activity es mi input
     name: "",
     difficulty: "",
     duration: "",
@@ -91,11 +91,11 @@ export default function CreateActivity() {
   }
 
   return (
-    <div>
-      <div>
-        <div>
-          <h1>Crear Actividad Turistica</h1>
+    <div className="bodyCreate">
+        <div className="h1Create">
+          <h1> Crear Actividad Turistica </h1>
         </div>
+      <div className="cardCreate">
         <div>
           <form onSubmit={(e) => handleSubmit(e)}>
             <div>
