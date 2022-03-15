@@ -10,7 +10,7 @@ export function validate(activity) {
     errors.name = "ingrese un nombre";
   }
   if (!activity.difficulty) {
-    errors.difficulty = "ingrese un nivel de difucultad";
+    errors.difficulty = "ingrese un nivel de dificultad";
   }
   if (activity.duration < 1) {
     errors.duration = "ingrese una duracion mayor 1 hora";

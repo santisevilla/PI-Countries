@@ -35,7 +35,7 @@ export default function rootReducer(state = initialState, action) {
       };
     case "ORDER_BY_NAME":
       let arr = action.payload === "Desc" ?
-      state.countries.sort((a, b) => {
+      state.allCountries.sort((a, b) => {
           if (a.name.toLowerCase() > b.name.toLowerCase()) {
               return -1 // los cambia
           } else if (b.name.toLowerCase() > a.name.toLowerCase()) {

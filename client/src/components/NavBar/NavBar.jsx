@@ -59,7 +59,7 @@ export default function NavBar() {
           Create a new activity!
         </Link>
       </div>
-      <div className="div">
+      <div className="buttonAllCountries">
         <button onClick={(e) => {handleClick(e)}}>
           All Countries
         </button>
