@@ -107,7 +107,7 @@ export default function CreateActivity() {
                 id="name"
                 type="text"
                 value={activity.name}
-                placeholder="surf, safari, sky, diving, camping, montain"
+                placeholder=""
                 onChange={handleChange}
                 required
               ></input>
@@ -145,7 +145,7 @@ export default function CreateActivity() {
                 name="duration"
                 type="number"
                 value={activity.duration}
-                placeholder="hours"
+                placeholder=""
                 required="required"
                 onChange={handleChange}
               ></input>

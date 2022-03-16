@@ -10,8 +10,8 @@ export default function rootReducer(state = initialState, action) {
     case "GET_COUNTRIES":
       return {
         ...state,
+        countries: action.payload,
         allCountries: action.payload,
-        countries: action.payload
       };
     case "GET_ACTIVITIES":
       return {
@@ -34,7 +34,7 @@ export default function rootReducer(state = initialState, action) {
         detail: action.payload,
       };
     case "ORDER_BY_NAME":
-      let arr = action.payload === "Desc" ?
+      let arr = action.payload === "desc" ?
       state.allCountries.sort((a, b) => {
           if (a.name.toLowerCase() > b.name.toLowerCase()) {
               return -1 // los cambia
@@ -69,7 +69,7 @@ export default function rootReducer(state = initialState, action) {
       };
     case "ORDER_BY_POPULATION":
       const orderByPopulation =
-        action.payload === "less"
+        action.payload === "desc"
           ? state.allCountries.sort(function (a, b) {
               if (a.population > b.population) {
                 return 1;
