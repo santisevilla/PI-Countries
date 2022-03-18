@@ -2,15 +2,23 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { getActivities, getCountries } from "../../actions";
+import { 
+  getActivities, 
+  getCountries,
+  orderByName,
+  orderByPopulation,
+  filterByActivity,
+  filterByContinent
+} from "../../actions";
 import Paginado from "../Paginado/Paginado";
 import Card from "../Card/Card";
-import NavBar from "../NavBar/NavBar";
 import styles from "./home.css";
+import SearchBar from "../SearchBar/SearchBar";
 
 export default function Home() {
   const dispatch = useDispatch();
   const allCountries = useSelector((state) => state.countries);
+  const allActivities = useSelector((state) => state.activities);
   const [order, setOrder] = useState("");
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -31,12 +39,96 @@ export default function Home() {
     dispatch(getActivities());
   }, [dispatch]);
 
+  function handleClick(e) {
+    e.preventDefault();
+    dispatch(getCountries());
+  }
+  
+  function handleAlphabeticalOrder(e) {
+    e.preventDefault();
+    dispatch(orderByName(e.target.value));
+    setCurrentPage(1)
+    setOrder(`Ordenado ${e.target.value}`)
+  }
+
+  function handleOrderPopulation(e) {
+    e.preventDefault();
+    dispatch(orderByPopulation(e.target.value));
+    setCurrentPage(1)
+    setOrder(`Ordenado ${e.target.value}`)
+  }
+
+  function handleFilterContinent(e) {
+    e.preventDefault();
+    dispatch(filterByContinent(e.target.value));
+    setOrder(`Ordenado ${e.target.value}`)
+  }
+
+  function handleFilterActivity(e) {
+    e.preventDefault();
+    dispatch(filterByActivity(e.target.value));
+    setOrder(`Ordenado ${e.target.value}`)
+  }
+
+
   window.scrollTo(0, 0);
 
   return (
     <div className="bodyHome">
       <div className="bodyNavBar">
-        <NavBar />
+      <div className="divActivity">
+        <Link to="/activities" style={{ textDecoration: "none", color: "none" }}>
+          Create a new activity!
+        </Link>
+      </div>
+      <div className="div">
+        <button onClick={(e) => {handleClick(e)}}>
+          All Countries
+        </button>
+      </div>
+      <div className="div">
+        <SearchBar />  
+      </div>
+      <div className="div">
+        <label> Order: </label>
+        <select onChange={(e) => handleAlphabeticalOrder(e)}>
+          <option value="All">All countries</option>
+          <option value="asc">A-Z</option>
+          <option value="desc">Z-A</option>
+        </select>
+      </div>
+      <div className="div">
+        <label> Population: </label>
+        <select onChange={(e) => handleOrderPopulation(e)}>
+          <option value="All">All countries</option>
+          <option value="asc"> Highest </option>
+          <option value="desc"> Lowest </option>
+        </select>
+      </div>  
+      <div className="div">
+        <label> Continents: </label>
+        <select onChange={(e) => handleFilterContinent(e)}>
+          <option value="All">All countries</option>
+          <option value="Africa">Africa</option>
+          <option value="Antarctica">Antarctica</option>
+          <option value="Asia">Asia</option>
+          <option value="Europe">Europa</option>
+          <option value="North America">North America</option>
+          <option value="Oceania">Oceania</option>
+          <option value="South America">South America</option>
+        </select>
+      </div>
+      <div className="div">
+        <label> Activity: </label>
+        <select onChange={(e) => handleFilterActivity(e)}>
+          <option value="All">All activities</option>
+          {allActivities.map((element) => (
+            <option value={element.name} key={element}>
+              {element.name}
+            </option>
+          ))}
+        </select>
+      </div>
       </div>
       <div className="cards">
         {currentCountries?.map((el) => {

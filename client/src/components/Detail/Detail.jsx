@@ -22,14 +22,14 @@ export default function Detail() {
             <div className="cardDetail">
             <div>
                 <img alt='flag' src= {detail?.image}/>
-                <p><strong>Name:</strong> {detail?.name}</p>
-                <p><strong>Continent:</strong> {detail?.continent}</p>            
-                <p><strong>Capital:</strong> {detail?.capital}</p>
-                <p><strong>Subregion:</strong> {detail?.subRegion}</p>
-                <p><strong>Area:</strong> {parseInt(detail?.area).toLocaleString()} km2</p>
-                <p><strong>Population:</strong> {parseInt(detail?.population).toLocaleString()}</p>                  
+                <p><strong>🔤 Name:</strong> {detail?.name}</p>
+                <p><strong>🗾 Continent:</strong> {detail?.continent}</p>            
+                <p><strong>🚩 Capital:</strong> {detail?.capital}</p>
+                <p><strong>🌍 Subregion:</strong> {detail?.subRegion}</p>
+                <p><strong>♾️ Area:</strong> {parseInt(detail?.area).toLocaleString()} km2</p>
+                <p><strong>🧑🏽‍🤝‍🧑🏻 Population:</strong> {parseInt(detail?.population).toLocaleString()}</p>                  
             </div>
-              <h4>Activities: </h4>
+              <h4>🏀 Activities: </h4>
               {detail.activities &&
                 detail.activities?.map((a) => (
                   <div key={a.id}>

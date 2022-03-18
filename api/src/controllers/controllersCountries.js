@@ -44,7 +44,7 @@ const getApiInfo = async () => {
 }
 
 
-const showAllCountries = async (req, res, next) => {
+const showAllCountries = async (req, res) => {
     const name = req.query.name
     const allCountries = await getApiInfo()
 
@@ -53,7 +53,7 @@ const showAllCountries = async (req, res, next) => {
         if(namePais.length >0){
             return res.status(200).send(namePais)
         }else{
-            return res.status(404).send("no se encuentra el pais")
+            return res.status(404).send("No se encuentra el pais")
         }
     }
     // console.log(paises)

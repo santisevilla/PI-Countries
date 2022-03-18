@@ -7,19 +7,19 @@ import styles from './Create.css'
 export function validate(activity) {
   let errors = {};
   if (!activity.name) {
-    errors.name = "ingrese un nombre";
+    errors.name = "Ingrese un nombre";
   }
   if (!activity.difficulty) {
-    errors.difficulty = "ingrese un nivel de dificultad";
+    errors.difficulty = "Ingrese un nivel de dificultad";
   }
   if (activity.duration < 1) {
-    errors.duration = "ingrese una duracion mayor 1 hora";
+    errors.duration = "Ingrese una duracion mayor";
   }
   if (!activity.season) {
-    errors.season = "selecciones una termporada";
+    errors.season = "Seleccione una temporada";
   }
   if (!activity.countries) {
-    errors.countries = "seleccione los paises";
+    errors.countries = "Seleccione el país o los países";
   }
   return errors;
 }
@@ -171,7 +171,6 @@ export default function CreateActivity() {
               </select>
               {errors.season && <p className="error">{errors.season}</p>}
             </div>
-
             <div>
               <div>
                 <label>Countries:</label>

@@ -1,8 +1,8 @@
 const initialState = {
   countries: [],
   allCountries: [],
-  detail: [],
   activities: [],
+  detail: [],
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -10,8 +10,8 @@ export default function rootReducer(state = initialState, action) {
     case "GET_COUNTRIES":
       return {
         ...state,
-        countries: action.payload,
         allCountries: action.payload,
+        countries: action.payload,
       };
     case "GET_ACTIVITIES":
       return {
@@ -34,29 +34,30 @@ export default function rootReducer(state = initialState, action) {
         detail: action.payload,
       };
     case "ORDER_BY_NAME":
-      let arr = action.payload === "desc" ?
-      state.allCountries.sort((a, b) => {
-          if (a.name.toLowerCase() > b.name.toLowerCase()) {
-              return -1 // los cambia
-          } else if (b.name.toLowerCase() > a.name.toLowerCase()) {
-              return 1 //los cambia
-          } else {
-              return 0 //los deja igual
-          }
-      }) :
-      state.countries.sort((a, b) => {
-          if (a.name.toLowerCase() < b.name.toLowerCase()) {
-              return -1 // los cambia
-          } else if (b.name.toLowerCase() < a.name.toLowerCase()) {
-              return 1 //los cambia
-          } else {
-              return 0 //los deja igual
-          }
-      })
-  return {
-      ...state,
-      countries: arr
-  }
+      let arr =
+        action.payload === "asc"
+          ? state.countries.sort(function (a, b) {
+              if (a.name > b.name) {
+                return 1;
+              }
+              if (b.name > a.name) {
+                return -1;
+              }
+              return 0;
+            })
+          : state.countries.sort(function (a, b) {
+              if (a.name > b.name) {
+                return -1;
+              }
+              if (b.name > a.name) {
+                return 1;
+              }
+              return 0;
+            });
+      return {
+        ...state,
+        countries: arr,
+      };
     case "FILTER_CONTINENT":
       const allCountries = state.allCountries;
       const continentFilter =
@@ -70,7 +71,7 @@ export default function rootReducer(state = initialState, action) {
     case "ORDER_BY_POPULATION":
       const orderByPopulation =
         action.payload === "desc"
-          ? state.allCountries.sort(function (a, b) {
+          ? state.countries.sort(function (a, b) {
               if (a.population > b.population) {
                 return 1;
               }
@@ -79,7 +80,7 @@ export default function rootReducer(state = initialState, action) {
               }
               return 0;
             })
-          : state.allCountries.sort(function (a, b) {
+          : state.countries.sort(function (a, b) {
               if (a.population > b.population) {
                 return -1;
               }
@@ -90,18 +91,21 @@ export default function rootReducer(state = initialState, action) {
             });
       return {
         ...state,
-        allCountries: orderByPopulation,
+        countries: orderByPopulation,
       };
     case "FILTER_ACTIVITY":
-      const allActivitiesCountries = state.allCountries;
-      const activityFiltered = action.payload === 'All' 
-      ? allActivitiesCountries.filter(element => element.activities.length > 0) 
-      : allActivitiesCountries.filter(element => 
-          element.activities && element.activities.map(element => element.name).includes(action.payload)); 
-          return{
-              ...state,
-              countries: activityFiltered
-          }  
+      const filteredActivity =
+        action.payload === "All"
+          ? state.allCountries
+          : state.allCountries.filter(
+              (c) =>
+                c.activities &&
+                c.activities.filter((a) => a.name === action.payload).length
+            );
+      return {
+        ...state,
+        countries: filteredActivity,
+      };
     default:
       return state;
   }
