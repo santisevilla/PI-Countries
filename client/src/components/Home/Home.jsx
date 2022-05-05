@@ -86,12 +86,14 @@ export default function Home() {
     <div className="bodyHome">
       <div className="bodyNavBar">
         <div className="divActivity">
-          <Link
-            to="/activities"
-            style={{ textDecoration: "none", color: "white" }}
-          >
-            Create a new activity!
-          </Link>
+          <button className="buttonAll">
+            <Link
+              to="/activities"
+              style={{ textDecoration: "none" }}
+            >
+              Create Activity
+            </Link>
+          </button>
         </div>
         <div className="div">
           <button
