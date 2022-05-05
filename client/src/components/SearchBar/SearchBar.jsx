@@ -27,7 +27,7 @@ export default function SearchBar() {
   
   return(
       <div>
-          <input type="text" value = {name} onChange= {e => handleInputCountries(e)}/> 
+          <input className="buttonSearch" type="text" value = {name} onChange= {e => handleInputCountries(e)}/> 
           <button className="buttonSearch" type="submit" onClick= {e => handleSubmitCountries(e)}>Search</button>
       </div>
   )
