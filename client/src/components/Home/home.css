@@ -44,6 +44,16 @@
 }
 
 .divActivity {
-  margin-top: 10px;
+  margin-top: 11px;
   margin-left: 140px;
+}
+
+.selectStyle {
+  border-radius: 1rem;
+  border: 1px solid black;
+}
+
+.buttonAll {
+  border-radius: 1rem;
+  border: 1px solid black;
 }
