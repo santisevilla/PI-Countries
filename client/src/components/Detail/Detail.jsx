@@ -1,17 +1,22 @@
 import { React, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
-import { 
-  getDetailCountry,
- } from "../../actions/index";
-import styles from './Detail.css'
+import { getDetailCountry, getDeleteDetail } from "../../actions/index";
+import styles from "./Detail.css";
 
 export default function Detail() {
   const dispatch = useDispatch();
   const { id } = useParams();
-  
+
   useEffect(() => {
     dispatch(getDetailCountry(id));
+  }, [dispatch, id]);
+
+  useEffect(() => {
+    dispatch(getDetailCountry(id));
+    return function () {
+      dispatch(getDeleteDetail());
+    };
   }, [dispatch, id]);
 
   const detail = useSelector((state) => state.detail);
@@ -20,44 +25,50 @@ export default function Detail() {
     <div className="bodyDetail">
       <div>
         <div className="positionCardDetail">
-            <div className="cardDetail">
+          <div className="cardDetail">
             <div>
-                <img className="imgDetail" alt='flag' src= {detail?.image}/>
-                <p><strong>🔤 Name:</strong> {detail?.name}</p>
-                <p><strong>🗾 Continent:</strong> {detail?.continent}</p>            
-                <p><strong>🚩 Capital:</strong> {detail?.capital}</p>
-                <p><strong>🌍 Subregion:</strong> {detail?.subRegion}</p>
-                <p><strong>♾️ Area:</strong> {parseInt(detail?.area).toLocaleString()} km2</p>
-                <p><strong>🧑🏽‍🤝‍🧑🏻 Population:</strong> {parseInt(detail?.population).toLocaleString()}</p>                  
+              <img className="imgDetail" alt="flag" src={detail?.image} />
+              <p>
+                <strong>🔤 Name:</strong> {detail?.name}
+              </p>
+              <p>
+                <strong>🗾 Continent:</strong> {detail?.continent}
+              </p>
+              <p>
+                <strong>🚩 Capital:</strong> {detail?.capital}
+              </p>
+              <p>
+                <strong>🌍 Subregion:</strong> {detail?.subRegion}
+              </p>
+              <p>
+                <strong>♾️ Area:</strong>{" "}
+                {parseInt(detail?.area).toLocaleString()} km2
+              </p>
+              <p>
+                <strong>🧑🏽‍🤝‍🧑🏻 Population:</strong>{" "}
+                {parseInt(detail?.population).toLocaleString()}
+              </p>
             </div>
-              <h4>🏀 Activities: </h4>
-              {detail.activities &&
-                detail.activities?.map((a) => (
-                  <div key={a.id}>
-                    <p>
-                      <li>Name: {a.name}</li>
-                      <li>Season: {a.season} </li>
-                      <li>Duration: {a.duration} </li>
-                      <li>Difficulty: {a.difficulty} </li>
-                    </p>
-                  </div>
-                ))}
-            </div>
+            <h4>🏀 Activities: </h4>
+            {detail.activities &&
+              detail.activities?.map((a) => (
+                <div key={a.id}>
+                  <p>
+                    <p>Name: {a.name}</p>
+                    <p>Season: {a.season} </p>
+                    <p>Duration: {a.duration} </p>
+                    <p>Difficulty: {a.difficulty} </p>
+                  </p>
+                </div>
+              ))}
+          </div>
         </div>
         <div className="buttonDetail">
           <Link to="/home">
             <button>BACK</button>
           </Link>
         </div>
-        </div>
+      </div>
     </div>
   );
 }
-
-
-// useEffect(() => {
-//   dispatch(getDetailCountry(id));
-//   return function(){
-//     dispatch(getDeleteDetail())
-//   }
-// }, [dispatch, id]);
