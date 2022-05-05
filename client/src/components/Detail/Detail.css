@@ -1,15 +1,14 @@
 .bodyDetail {
-    background-image: url("https://i.pinimg.com/originals/1f/4c/26/1f4c26c0f8feec30615f77f787c08612.jpg");
+    background-image: url("https://i.pinimg.com/originals/96/8a/a8/968aa836690b5fa1dbc3390e41d1ee26.png");
     background-position: center;
     background-size: cover;
     height: 100vh;
 }
 
 .cardDetail {
-    width: 500px;
-    height: 2;
-    border-radius: 20px;
-    padding: 5px;
+    width: 600px;
+    height: 900px;
+    border-radius: 2rem;
     box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
     background-image: linear-gradient(144deg,#AF40FF, #5B42F3 50%,#00DDEB);
     border: 3px solid black;
@@ -17,22 +16,29 @@
    
 .cardDetail__content {
     background: rgb(5, 6, 45);
-    border-radius: 17px;
-    width: 100%;
-    height: 100%;
+    /* border-radius: 20px; */
+    width: 100px;
+    height: 100px;
 }
 
 .positionCardDetail {
     text-align:center;
     position: absolute;
-    top: 10%;
-    left: 40%;
+    top: 3%;
+    left: 35%;
 }
 
 .buttonDetail {
     text-align:center;
     position: absolute;
-    top: 80%;
-    left: 50%;
+    top: 0%;
+    left: 10%;
 }
 
+.imgDetail {
+    border-bottom: 3px solid black;
+    border-top-left-radius: 1.8rem;
+    border-top-right-radius: 1.8rem;
+    width: 600px;
+    height: 305px;
+}

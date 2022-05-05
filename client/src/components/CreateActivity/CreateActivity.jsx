@@ -2,13 +2,17 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { postActivity, getCountries } from "../../actions";
 import { useDispatch, useSelector } from "react-redux";
-import styles from './Create.css'
+import styles from "./Create.css";
+
+const regexNumber = /[A-Z\s]+$/i
 
 export function validate(activity) {
   let errors = {};
   if (!activity.name) {
     errors.name = "Ingrese un nombre";
-  }
+  } else if (!regexNumber.test(activity.name)) {
+    errors.name = "El nombre de la actividad no permite números";
+  } 
   if (!activity.difficulty) {
     errors.difficulty = "Ingrese un nivel de dificultad";
   }
@@ -92,9 +96,9 @@ export default function CreateActivity() {
 
   return (
     <div className="bodyCreate">
-        <div className="h1Create">
-          <h1> Crear Actividad Turistica </h1>
-        </div>
+      <div className="h1Create">
+        <h1> Crear Actividad Turistica </h1>
+      </div>
       <div className="cardCreate">
         <div>
           <form onSubmit={(e) => handleSubmit(e)}>
@@ -175,12 +179,14 @@ export default function CreateActivity() {
               <div>
                 <label>Countries:</label>
               </div>
-              <select name="countries" type="text" onChange={e => handleSelect(e)}>
+              <select
+                name="countries"
+                type="text"
+                onChange={(e) => handleSelect(e)}
+              >
                 <option>Select countries</option>
                 {countries.map((c) => (
-                  <option value={c.name}>
-                    {c.name}
-                  </option>
+                  <option value={c.name}>{c.name}</option>
                 ))}
               </select>
             </div>

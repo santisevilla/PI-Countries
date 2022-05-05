@@ -1,13 +1,14 @@
 import { React, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
-import { getDetailCountry } from "../../actions/index";
+import { 
+  getDetailCountry,
+ } from "../../actions/index";
 import styles from './Detail.css'
 
 export default function Detail() {
   const dispatch = useDispatch();
   const { id } = useParams();
-
   
   useEffect(() => {
     dispatch(getDetailCountry(id));
@@ -21,7 +22,7 @@ export default function Detail() {
         <div className="positionCardDetail">
             <div className="cardDetail">
             <div>
-                <img alt='flag' src= {detail?.image}/>
+                <img className="imgDetail" alt='flag' src= {detail?.image}/>
                 <p><strong>🔤 Name:</strong> {detail?.name}</p>
                 <p><strong>🗾 Continent:</strong> {detail?.continent}</p>            
                 <p><strong>🚩 Capital:</strong> {detail?.capital}</p>
@@ -52,3 +53,11 @@ export default function Detail() {
     </div>
   );
 }
+
+
+// useEffect(() => {
+//   dispatch(getDetailCountry(id));
+//   return function(){
+//     dispatch(getDeleteDetail())
+//   }
+// }, [dispatch, id]);

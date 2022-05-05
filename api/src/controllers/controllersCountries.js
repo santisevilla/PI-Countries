@@ -56,21 +56,8 @@ const showAllCountries = async (req, res) => {
             return res.status(404).send("No se encuentra el pais")
         }
     }
-    // console.log(paises)
-    // paises.forEach(p => console.log(p.id))
-    // paises.forEach(p => console.log(p.maps))
     return res.status(200).send(allCountries)
 }
-    // if(name) {
-    //     const countrieName = totalCountries.filter(el => el.name.toLowerCase().includes(name.toLowerCase()))
-    //     if(countrieName) {
-    //         res.status(200).send(countrieName)
-    //     } else {
-    //         res.status(404).send("No existe país con ese nombre")
-    //     }
-    // } else {
-    //     res.status(200).send(totalCountries)
-    // }
 
 const countriesId = async (req, res) => {
     try {

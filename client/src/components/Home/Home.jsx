@@ -8,12 +8,13 @@ import {
   orderByName,
   orderByPopulation,
   filterByActivity,
-  filterByContinent
+  filterByContinent,
+  filterByPopulation
 } from "../../actions";
 import Paginado from "../Paginado/Paginado";
 import Card from "../Card/Card";
-import styles from "./home.css";
 import SearchBar from "../SearchBar/SearchBar";
+import styles from "./home.css";
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -36,6 +37,9 @@ export default function Home() {
 
   useEffect(() => {
     dispatch(getCountries());
+  }, [dispatch]);
+
+  useEffect(() => {
     dispatch(getActivities());
   }, [dispatch]);
 
@@ -70,6 +74,11 @@ export default function Home() {
     setOrder(`Ordenado ${e.target.value}`)
   }
 
+  // function handleFilterPopulation(e) {
+  //   e.preventDefault()
+  //   dispatch(filterByPopulation(e.target.value))
+  //   setOrder(`Ordenado ${e.target.value}`)
+  // }
 
   window.scrollTo(0, 0);
 
@@ -77,7 +86,7 @@ export default function Home() {
     <div className="bodyHome">
       <div className="bodyNavBar">
       <div className="divActivity">
-        <Link to="/activities" style={{ textDecoration: "none", color: "none" }}>
+        <Link to="/activities">
           Create a new activity!
         </Link>
       </div>
@@ -89,10 +98,17 @@ export default function Home() {
       <div className="div">
         <SearchBar />  
       </div>
+      {/* <div>
+        <label> Population </label>
+        <select onChange={(e) => handleFilterPopulation(e)}>
+          <option value="All"></option>
+          <option value="menor">menor a 50000</option>
+        </select>
+      </div> */}
       <div className="div">
         <label> Order: </label>
         <select onChange={(e) => handleAlphabeticalOrder(e)}>
-          <option value="All">All countries</option>
+          <option value="All"></option>
           <option value="asc">A-Z</option>
           <option value="desc">Z-A</option>
         </select>
@@ -100,7 +116,7 @@ export default function Home() {
       <div className="div">
         <label> Population: </label>
         <select onChange={(e) => handleOrderPopulation(e)}>
-          <option value="All">All countries</option>
+          <option value="All"></option>
           <option value="asc"> Highest </option>
           <option value="desc"> Lowest </option>
         </select>
@@ -108,7 +124,7 @@ export default function Home() {
       <div className="div">
         <label> Continents: </label>
         <select onChange={(e) => handleFilterContinent(e)}>
-          <option value="All">All countries</option>
+          <option value="All"></option>
           <option value="Africa">Africa</option>
           <option value="Antarctica">Antarctica</option>
           <option value="Asia">Asia</option>
@@ -121,7 +137,7 @@ export default function Home() {
       <div className="div">
         <label> Activity: </label>
         <select onChange={(e) => handleFilterActivity(e)}>
-          <option value="All">All activities</option>
+          <option value="All"></option>
           {allActivities.map((element) => (
             <option value={element.name} key={element}>
               {element.name}
@@ -134,7 +150,7 @@ export default function Home() {
         {currentCountries?.map((el) => {
           return (
             <div className="card">
-              <Link to={"/home/" + el.id} style={{ textDecoration: "none", color: "none" }}>
+              <Link to={"/home/" + el.id} style={{ textDecoration: "none", color: "white" }}>
                 <Card
                   image={el.image}
                   name={el.name}

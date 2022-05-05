@@ -76,10 +76,15 @@ export function orderByPopulation(payload){
 }
 
 export function filterByActivity(payload){
-   // console.log(payload)
     return{
         type: "FILTER_ACTIVITY",
         payload
     }
 }
 
+// export function filterByPopulation(payload){
+//     return{
+//         type: "FILTER_POPULATION",
+//         payload
+//     }
+// }

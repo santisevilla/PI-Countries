@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { getNameCountries } from "../../actions";
+import styles from "./SearchBar.css"
 
 export default function SearchBar() {
   const dispatch = useDispatch();
@@ -10,7 +11,6 @@ export default function SearchBar() {
 
   function handleInputCountries(e) {
       e.preventDefault();
-      //dispatch(getNameCountries(name));
       setName('')
       setName(e.target.value);        
   }
@@ -27,8 +27,8 @@ export default function SearchBar() {
   
   return(
       <div>
-          <input type="text" placeholder={'Enter the Country...'} value = {name} onChange= {e => handleInputCountries(e)}/> 
-          <button type="submit" onClick= {e => handleSubmitCountries(e)}>Search</button>
+          <input type="text" value = {name} onChange= {e => handleInputCountries(e)}/> 
+          <button className="buttonSearch" type="submit" onClick= {e => handleSubmitCountries(e)}>Search</button>
       </div>
   )
 }

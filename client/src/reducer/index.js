@@ -106,6 +106,14 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         countries: filteredActivity,
       };
+    // case "FILTER_POPULATION":
+    //   const filteredPopulation = action.payload === "all" 
+    //   ? state.allCountries 
+    //   : state.allCountries.filter((el) => el.population < 50000)
+    //   return {
+    //     ...state,
+    //     countries: filteredPopulation
+    //   }
     default:
       return state;
   }
