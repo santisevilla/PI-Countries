@@ -65,7 +65,7 @@ export default function Detail() {
         </div>
         <div className="buttonDetail">
           <Link to="/home">
-            <button>X</button>
+            <button className="buttonDetail">X</button>
           </Link>
         </div>
       </div>

@@ -111,7 +111,7 @@ export default function CreateActivity() {
                 id="name"
                 type="text"
                 value={activity.name}
-                placeholder=""
+                placeholder="Enter a name"
                 onChange={handleChange}
                 required
               ></input>
@@ -129,7 +129,7 @@ export default function CreateActivity() {
                 onChange={handleChange}
                 required
               >
-                <option value="">select your Difficulty</option>
+                <option value="">Select your difficulty</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -149,7 +149,7 @@ export default function CreateActivity() {
                 name="duration"
                 type="number"
                 value={activity.duration}
-                placeholder=""
+                placeholder="Enter a duration"
                 required="required"
                 onChange={handleChange}
               ></input>
@@ -167,7 +167,7 @@ export default function CreateActivity() {
                 required="required"
                 onChange={handleChange}
               >
-                <option value="">Select your Season</option>
+                <option value="">Select your season</option>
                 <option value="Summer">Summer</option>
                 <option value="Fall">Fall</option>
                 <option value="Winter">Winter</option>

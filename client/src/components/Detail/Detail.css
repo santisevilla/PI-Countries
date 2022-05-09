@@ -29,6 +29,7 @@
 
 .buttonDetail {
     text-align:center;
+    border-radius: 1rem;
     position: absolute;
     top: 2%;
     left: 68%;
@@ -41,3 +42,4 @@
     width: 600px;
     height: 305px;
 }
+
